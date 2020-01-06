@@ -1,0 +1,268 @@
+html,
+body,
+#root {
+   height: 100%;
+   width: 100%;
+   overflow: hidden;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+html {
+   --theme-layout-background: var(--theme-palette-grey-200);
+}
+
+.dark-mode {
+   --theme-layout-background: var(--theme-palette-grey-900);
+}
+
+html > body {
+   background: var(--theme-layout-background);
+}
+
+.mui-layout {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   height: 100%;
+
+   > main {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      flex-grow: 2;
+      overflow: hidden;
+
+      > .route {
+         flex-grow: 2;
+         position: relative;
+         background: var(--theme-palette-background-default);
+
+         &:not(.cols-1) {
+            &.col-0 {
+               min-width: 600px;
+               border-left: 0;
+
+               &::before {
+                  content: ' ';
+                  display: block;
+                  position: absolute;
+                  z-index: 1101;
+                  top: 0;
+                  left: 0;
+                  width: 1px;
+                  height: 100%;
+                  background: var(--theme-palette-text-primary);
+                  opacity: 0.13;
+               }
+            }
+
+            &:not(.col-0) {
+               min-width: var(--theme-layout-smallcol-minwidth, 320px);
+               max-width: var(--theme-layout-smallcol-maxnwidth, 30%);
+            }
+         }
+
+         header.MuiAppBar-root {
+            user-select: none;
+         }
+      }
+   }
+
+   &.menu-side {
+      flex-direction: row;
+   }
+
+   &.size-xl {
+      max-width: var(--theme-layout-max-width, 1680px);
+      max-height: var(--theme-layout-max-height, 1200px);
+      padding: var(--theme-layout-max-padding, 20px);
+   }
+
+   .router-link {
+      text-decoration: inherit;
+   }
+}
+
+//links
+.MuiList-root a {
+   text-decoration: inherit;
+   color: inherit;
+
+   &.active .MuiListItem-root {
+      background: var(--theme-palette-background-default);
+   }
+}
+
+.mui-layout-rounder {
+   user-select: none;
+   display: none;
+   pointer-events: none;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   z-index: 1102;
+   transform: translate3d(0, 0, 0);
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   text-rendering: optimizeLegibility;
+
+   > .t,
+   > .b {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      > .l,
+      > .r {
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: 100;
+
+         svg {
+            display: block;
+            overflow: hidden;
+            width: var(--theme-layout-radius, 3px);
+            height: var(--theme-layout-radius, 3px);
+
+            > * {
+               fill: var(--theme-layout-background, transparent);
+            }
+         }
+      }
+
+      > .r {
+         left: auto;
+         right: 0;
+         transform: rotate(90deg);
+      }
+   }
+
+   > .b {
+      bottom: 0;
+      top: auto;
+
+      > .l,
+      > .r {
+         top: auto;
+         bottom: 0;
+         transform: rotate(180deg);
+      }
+
+      > .l {
+         transform: rotate(270deg);
+      }
+   }
+}
+
+.mui-layout.size-xl .mui-layout-rounder {
+   display: var(--theme-layout-radius-xl-display, 'block');
+}
+
+//transitions
+.mui-layout > .routes > .route {
+   > .mui-layout-view > .view-content {
+      transform: translate3d(0, 0, 0);
+      transition-property: none;
+   }
+
+   &.animation-navigate.col-0.direction-forward.will-enter > .mui-layout-view {
+      > .view-content {
+         transform: translate3d(90px, 0, 0);
+         opacity: 0.5;
+         will-change: transform, opacity;
+      }
+
+      > header > .view-title {
+         transform: translate3d(20px, 0, 0);
+         will-change: transform, opacity;
+         opacity: 0.5;
+      }
+   }
+
+   &.animation-navigate.col-0.direction-forward.entering > .mui-layout-view {
+      > .view-content {
+         transform: translate3d(0, 0, 0);
+         opacity: 1;
+         will-change: transform, opacity;
+         transition-property: transform, opacity;
+         transition-duration: 570ms;
+         transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+      }
+
+      > header > .view-title {
+         transform: translate3d(0, 0, 0);
+         opacity: 1;
+         will-change: transform, opacity;
+         transition-duration: 370ms;
+         transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+      }
+   }
+
+   &.animation-navigate.col-0.direction-backward.will-enter > .mui-layout-view {
+      > .view-content {
+         transform: translate3d(-90px, 0, 0);
+         opacity: 0.5;
+         will-change: transform, opacity;
+      }
+
+      > header > .view-title {
+         transform: translate3d(-20px, 0, 0);
+         opacity: 0.5;
+         will-change: transform, opacity;
+      }
+   }
+
+   &.animation-navigate.col-0.direction-backward.entering > .mui-layout-view {
+      > .view-content {
+         transform: translate3d(0, 0, 0);
+         opacity: 1;
+         will-change: transform, opacity;
+         transition-property: transform, opacity;
+         transition-duration: 570ms;
+         transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+      }
+
+      > header > .view-title {
+         transform: translate3d(0, 0, 0);
+         opacity: 1;
+         will-change: transform, opacity;
+         transition-duration: 370ms;
+         transition-timing-function: cubic-bezier(0.42, 0.82, 0, 1);
+      }
+   }
+
+   &.animation-default.will-enter > .mui-layout-view > .view-content,
+   &.animation-navigate.col-0.direction-same.will-enter > .mui-layout-view > .view-content {
+      transform: translate3d(0, 7px, 0);
+      opacity: 0;
+      will-change: transform, opacity;
+   }
+
+   &.animation-default.entering > .mui-layout-view > .view-content,
+   &.animation-navigate.col-0.direction-same.entering > .mui-layout-view > .view-content {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+      will-change: transform, opacity;
+      transition-property: transform, opacity;
+      transition-duration: 450ms;
+      transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+   }
+}
+
+.mui-layout-view.defaultNotFound {
+   .defaultNotFoundIcon {
+      font-size: 6rem;
+      color: var(--theme-palette-text-secondary);
+      opacity: 0.7;
+   }
+}
+
+.mui-layout-modal {
+   .modal-action.MuiButton-containedPrimary {
+      min-width: 90px;
+   }
+}

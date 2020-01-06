@@ -1,0 +1,21 @@
+.mui-layout .route .view-home {
+   .MuiContainer-root {
+      text-align: center;
+   }
+   .MuiButton-root {
+      width: 100%;
+      max-width: 350px;
+      margin: 5px;
+
+      &.theme {
+         max-width: 170px;
+         font-size: 0.75rem;
+      }
+   }
+   .bigicon {
+      font-size: 20rem;
+      display: block;
+      width: 100%;
+      color: var(--theme-palette-primary-light, #eee);
+   }
+}

@@ -1,0 +1,256 @@
+.mui-layout nav.mui-layout-navmenu {
+   order: 2;
+   z-index: 10;
+   height: 56px;
+   display: flex;
+   flex-shrink: 0;
+   justify-content: center;
+   background: var(--theme-palette-background-paper);
+   color: var(--theme-palette-text-primary);
+   position: relative;
+
+   &::before {
+      content: ' ';
+      position: absolute;
+      pointer-events: none;
+      display: block;
+      width: 100%;
+      height: var(--theme-layout-nav-shadow-height, 2px);
+      left: 0;
+      top: calc(0px - var(--theme-layout-nav-shadow-height, 2px));
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
+   }
+
+   > .header, >.footer{ display: none; }
+
+   > .links{
+      display: flex;
+      flex-direction: row;
+      flex-shrink: 0;
+      flex-grow: 2;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+
+      > * {
+         flex: 1;
+         max-width: 168px;
+         min-width: 80px;
+         position: relative;
+         transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+         color: var(--theme-palette-text-primary);
+   
+         border: 0;
+         cursor: pointer;
+         margin: 0;
+         display: inline-flex;
+         outline: 0;
+         position: relative;
+         align-items: center;
+         user-select: none;
+         border-radius: 0;
+         vertical-align: middle;
+         -moz-appearance: none;
+         justify-content: center;
+         text-decoration: none;
+         background-color: transparent;
+         -webkit-appearance: none;
+         -webkit-tap-highlight-color: transparent;
+
+         .MuiSvgIcon-root{
+            color: var(--theme-palette-text-secondary);
+         }
+         
+         &.active {
+            //color: #3f51b5;
+            .link-content {
+               padding-top: 6px;
+            }
+            .link-label {
+               font-size: 0.875rem;
+            }
+            .MuiSvgIcon-root{
+               color: var(--theme-palette-primary-main);
+            }
+         }
+   
+         .link-content {
+            padding: 6px 12px 8px;
+            transition: padding-top 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            width: 100%;
+            height: 100%;
+            display: inline-flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+         }
+         .link-label {
+            opacity: 1;
+            font-size: 0.75rem;
+            transition: opacity 0.2s;
+            font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            transition-delay: 0.1s;
+         }
+   
+         .MuiBadge-root {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .MuiBadge-badge {
+               min-width: 14px;
+               height: 14px;
+               padding: 0 2px;
+               font-size: 0.6rem;
+            }
+         }
+      }
+   }
+
+   h2.MuiSvgIcon-root {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-size: 1.4rem;
+      margin-bottom: 2px;
+   }
+}
+.mui-layout.menu-side nav.mui-layout-navmenu{
+   z-index: 10;
+   order: 0;
+   flex-direction: column;
+   justify-content: flex-start;
+   height: 100%;
+   width: 67px;
+   background: var(--theme-palette-grey-200);
+   color: var(--theme-palette-grey-700);
+
+   &::before {
+      width: var(--theme-layout-nav-shadow-width, 3px);
+      height: 100%;
+      left: auto; 
+      right: 0;
+      top: 0;
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
+   }
+
+   > .links{
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      > * {
+         width: 100%;
+         min-width: auto;
+         max-width: none;
+         min-height: 75px;
+         flex-grow: 0;
+         color: var(--theme-palette-grey-700);
+
+         .link-label{ font-size: 0.7rem; }
+         .MuiSvgIcon-root{ 
+            color: var(--theme-palette-grey-500); 
+            font-size: 1.9rem;
+            width: 1.9rem;
+            height: 1.9rem;
+         }
+         .MuiButtonBase-root{
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+         }
+
+         &:hover:not(.active){
+            opacity: 0.8;
+         }
+         &.active{
+            color: var(--theme-palette-grey-900);
+            border-left: 3px solid var(--theme-palette-primary-main);
+            .MuiSvgIcon-root{ color: var(--theme-palette-primary-main); }            
+         }
+      }
+   } 
+   > .header{
+      display: flex; 
+      flex-direction: column;
+      padding-bottom: 1rem;
+   }
+   >.footer{ 
+      padding-top: 1rem;
+      display: flex; 
+      flex-direction: column;
+   }
+}
+.mui-layout.menu-side.menu-large nav.mui-layout-navmenu{
+   width: 150px;
+
+   > .links > * {
+      min-height: 55px;
+      min-width: auto;
+      .MuiTouchRipple-root{ display: none; }
+
+      .link-content {
+         flex-direction: row;
+         justify-content: flex-start;
+
+         .MuiBadge-root {
+            flex-direction: row;
+            justify-content: flex-start;
+            .MuiBadge-badge {
+               top: 2px;
+               right: auto;
+               left: -12px;
+            }
+         }
+         .MuiSvgIcon-root {
+            margin-right: 8px;
+            font-size: 1.8rem;
+            width: 1.8rem;
+            height: 1.8rem;
+         }
+         h2.MuiSvgIcon-root {
+            font-size: 1rem;
+            margin-bottom: 0;
+         }
+         .link-label {
+            font-size: 1rem;
+         }
+      }
+      &.active .MuiButtonBase-root{
+         padding-left: 0.67rem;
+      }
+   }
+}
+.mui-layout.dark-mode nav.mui-layout-navmenu{
+   > .links > *.active{
+      .MuiSvgIcon-root{ color: var(--theme-palette-primary-light); }  
+   }
+}
+.mui-layout.dark-mode.menu-side nav.mui-layout-navmenu{
+   background: var(--theme-palette-grey-900);
+   color: var(--theme-palette-grey-100);
+   > .links > * {
+      color: var(--theme-palette-grey-200);
+      .MuiSvgIcon-root{ color: var(--theme-palette-grey-200); }  
+
+      &.active{
+         border-left-color: var(--theme-palette-primary-light);
+         .MuiSvgIcon-root{ color: var(--theme-palette-primary-light); }  
+      }
+   }
+}
+.mui-layout.menu-side.size-xl nav.mui-layout-navmenu{
+   background: transparent;
+   &::before {
+      display: none;
+   }
+
+   > .links > *.active{
+      //border-right: 3px solid var(--theme-palette-primary-main);
+      border-left: 0;
+      .MuiButtonBase-root{
+         padding-left: 0.57rem;
+      }
+   }
+}
+.mui-layout.dark-mode.size-xl nav.mui-layout-navmenu{
+   background: transparent;
+}

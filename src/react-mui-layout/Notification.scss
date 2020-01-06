@@ -1,0 +1,53 @@
+.mui-layout {
+   div[class^='SnackbarItem-collapseContainer'],
+   div[class*=' SnackbarItem-collapseContainer'] {
+      padding-left: 20px;
+
+      .MuiSnackbarContent-message {
+         user-select: none;
+      }
+      .MuiSnackbarContent-action {
+         .auto-action {
+            flex-shrink: 0;
+         }
+         .MuiIconButton-root.auto-close {
+            padding: 8px;
+            .MuiSvgIcon-root {
+               font-size: 1.2rem;
+            }
+         }
+         .MuiButton-contained + * {
+            margin-left: 0.5rem;
+         }
+      }
+
+      .notification-content {
+         width: 100%;
+         > * {
+            margin: 0;
+            line-height: 1.1;
+         }
+         > * + * {
+            margin-top: 0.15rem;
+         }
+         .notification-title{
+            font-weight: normal;
+            font-size: 1.1rem;
+         }
+         .notification-content{
+            opacity: 0.8;
+            font-size: 0.9rem;
+         }
+      }
+   }
+
+   &.size-xs {
+      div[class^='SnackbarItem-collapseContainer'],
+      div[class*=' SnackbarItem-collapseContainer'] {
+         padding-left: 8px;
+         .MuiSnackbarContent-action {
+            padding-left: 0;
+         }
+      }
+   }
+}
