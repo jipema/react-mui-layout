@@ -18,7 +18,7 @@
       "mobile",
       "webapp"
    ],
-   "version": "0.1.0",
+   "version": "0.1.1",
    "scripts": {
       "start": "react-scripts start",
       "build": "yarn run prepublishOnly",
@@ -68,11 +68,11 @@
       "@babel/core": "^7.6.4",
       "@babel/preset-env": "^7.6.3",
       "@babel/preset-react": "^7.6.3",
-      "babel-plugin-transform-remove-console": "^6.9.4",
-      "np": "*",
       "@testing-library/jest-dom": "^4.2.4",
       "@testing-library/react": "^9.3.2",
-      "@testing-library/user-event": "^7.1.2"
+      "@testing-library/user-event": "^7.1.2",
+      "babel-plugin-transform-remove-console": "^6.9.4",
+      "np": "*"
    },
    "browserslist": {
       "production": [
