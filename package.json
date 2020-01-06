@@ -51,6 +51,7 @@
    "dependencies": {
       "@material-ui/core": "^4.8.1",
       "@material-ui/icons": "^4.5.1",
+      "node-sass": "^4.13.0",
       "notistack": "^0.9.7",
       "react-helmet": "^5.2.1",
       "react-mega-router": "^1.0.5"
