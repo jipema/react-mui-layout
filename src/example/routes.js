@@ -33,7 +33,6 @@ export const routes = [
                   title: 'Page 1b',
                   component: Page1b,
                   cols: (props, cols, path, router, history) => {
-                     console.log('>>> routeCols', { props, cols, path, router, history });
                      if (props && (props.size === 'lg' || props.size === 'xl')) return 3;
                   }
                }
