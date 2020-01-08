@@ -2,7 +2,7 @@ import React from 'react';
 
 import VerifiedUserRoundedIcon from '@material-ui/icons/VerifiedUserRounded';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import LocalPizzaRoundedIcon from '@material-ui/icons/LocalPizzaRounded';
+import LocalPizzaRoundedIcon from '@material-ui/icons/LocalPizzaRounded'; 
 
 import FormPage from './pages/Form';
 import Home from './pages/Home';
@@ -20,7 +20,8 @@ export const routes = [
       title: 'Page 1',
       component: Page1,
       //navMenu: false,
-      navMenuIcon: <LocalPizzaRoundedIcon />,
+      //navMenuIcon: <LocalPizzaRoundedIcon />,
+      navMenuTitle: 'Page 1 loooong page title',
       routes: [
          {
             path: '/page1/a',

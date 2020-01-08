@@ -11,9 +11,10 @@ export function Menu(props) {
    if (props.routes) {
       for (let route of props.routes) {
          if (!route.path || route.navMenu === false) continue;
-         let title = route.navMenuTitle || route.title || String(menuLinks.length + 1);
+         const title = route.navMenuLabel || route.navMenuTitle || route.title || String(menuLinks.length + 1);
+         console.log('>>> ROUTE', title, route);
          let icon = route.navMenuIcon;
-         if (icon === undefined) icon = <h2 className="MuiSvgIcon-root">{route.navMenuIcon || initials(title)}</h2>;
+         if (icon === undefined) icon = <h2 className="MuiSvgIcon-root no-icon">{route.navMenuIcon || initials(title)}</h2>; 
          menuLinks.push(
             <Link href={route.path} key={route.path}>
                <ButtonBase className={'link-content'}>

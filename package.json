@@ -53,6 +53,9 @@
       "@material-ui/icons": "^4.5.1",
       "node-sass": "^4.13.0",
       "notistack": "^0.9.7",
+      "prop-types": "^15.7.2",
+      "react": "^16.12.0",
+      "react-dom": "^16.12.0",
       "react-helmet": "^5.2.1",
       "react-mega-router": "^1.0.5"
    },
@@ -72,7 +75,8 @@
       "@testing-library/react": "^9.3.2",
       "@testing-library/user-event": "^7.1.2",
       "babel-plugin-transform-remove-console": "^6.9.4",
-      "np": "*"
+      "np": "*",
+      "react-scripts": "^3.3.0"
    },
    "browserslist": {
       "production": [

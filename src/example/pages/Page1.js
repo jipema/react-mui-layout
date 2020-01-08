@@ -20,7 +20,7 @@ const actions = [
 ];
 
 export function Page1(props) {
-   console.log('>>> RENDER PAGE 1');
+   console.log('>>> RENDER PAGE 1', props);
    return (
       <View {...props} actions={actions} menu={actions}>
          <Container maxWidth="sm">
