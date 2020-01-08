@@ -12,7 +12,6 @@ export function Menu(props) {
       for (let route of props.routes) {
          if (!route.path || route.navMenu === false) continue;
          const title = route.navMenuLabel || route.navMenuTitle || route.title || String(menuLinks.length + 1);
-         console.log('>>> ROUTE', title, route);
          let icon = route.navMenuIcon;
          if (icon === undefined) icon = <h2 className="MuiSvgIcon-root no-icon">{route.navMenuIcon || initials(title)}</h2>; 
          menuLinks.push(
