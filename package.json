@@ -57,7 +57,7 @@
       "react": "^16.12.0",
       "react-dom": "^16.12.0",
       "react-helmet": "^5.2.1",
-      "react-mega-router": "^1.0.5"
+      "react-mega-router": "^1.0.7"
    },
    "peerDependencies": {
       "node-sass": "^4.13.0",

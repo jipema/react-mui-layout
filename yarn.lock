@@ -9648,10 +9648,10 @@ react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4, react-is
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-mega-router@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/react-mega-router/-/react-mega-router-1.0.5.tgz#523f0d17c382c3e70a2b58e4e1ae2c363997af6c"
-  integrity sha512-005MN7ppQfA1tXClnAQm2OW/EE21XivBa+nhO49rK7eZHMv9ggiCrF/tA1gOgwmIXmMfiyH3tv9SmySugN7MNQ==
+react-mega-router@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-mega-router/-/react-mega-router-1.0.7.tgz#f027b398b8cb3a9545c5338d30fd11549a58a7a8"
+  integrity sha512-4yL/rUwlC22/DoLTEKnT6LyRKh/Wdq6Rj6F4MvPY+pXF47o5r856Lquf5eXicZh4FCeHrt+hymCLRciXS6yA9w==
   dependencies:
     history "^4.10.1"
     prop-types "^15.7.2"

@@ -2,7 +2,7 @@ import React from 'react';
 
 import VerifiedUserRoundedIcon from '@material-ui/icons/VerifiedUserRounded';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import LocalPizzaRoundedIcon from '@material-ui/icons/LocalPizzaRounded'; 
+import LocalPizzaRoundedIcon from '@material-ui/icons/LocalPizzaRounded';
 
 import FormPage from './pages/Form';
 import Home from './pages/Home';
@@ -31,7 +31,11 @@ export const routes = [
                {
                   path: '/page1/a/b',
                   title: 'Page 1b',
-                  component: Page1b
+                  component: Page1b,
+                  cols: (props, cols, path, router, history) => {
+                     console.log('>>> routeCols', { props, cols, path, router, history });
+                     if (props && (props.size === 'lg' || props.size === 'xl')) return 3;
+                  }
                }
             ]
          }
