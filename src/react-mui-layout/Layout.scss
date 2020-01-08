@@ -17,7 +17,7 @@ html {
    --theme-layout-background: var(--theme-palette-grey-900);
 }
 
-html > body {
+html>body {
    background: var(--theme-layout-background);
 }
 
@@ -27,14 +27,14 @@ html > body {
    width: 100%;
    height: 100%;
 
-   > main {
+   >main {
       position: relative;
       display: flex;
       flex-direction: row;
       flex-grow: 2;
       overflow: hidden;
 
-      > .route {
+      >.route {
          flex-grow: 2;
          position: relative;
          background: var(--theme-palette-background-default);
@@ -42,6 +42,9 @@ html > body {
          &:not(.cols-1) {
             &.col-0 {
                min-width: 600px;
+            }
+
+            &:not(:first-child) {
                border-left: 0;
 
                &::before {
@@ -108,15 +111,15 @@ html > body {
    -moz-osx-font-smoothing: grayscale;
    text-rendering: optimizeLegibility;
 
-   > .t,
-   > .b {
+   >.t,
+   >.b {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
 
-      > .l,
-      > .r {
+      >.l,
+      >.r {
          position: absolute;
          top: 0;
          left: 0;
@@ -128,31 +131,31 @@ html > body {
             width: var(--theme-layout-radius, 3px);
             height: var(--theme-layout-radius, 3px);
 
-            > * {
+            >* {
                fill: var(--theme-layout-background, transparent);
             }
          }
       }
 
-      > .r {
+      >.r {
          left: auto;
          right: 0;
          transform: rotate(90deg);
       }
    }
 
-   > .b {
+   >.b {
       bottom: 0;
       top: auto;
 
-      > .l,
-      > .r {
+      >.l,
+      >.r {
          top: auto;
          bottom: 0;
          transform: rotate(180deg);
       }
 
-      > .l {
+      >.l {
          transform: rotate(270deg);
       }
    }
@@ -163,28 +166,28 @@ html > body {
 }
 
 //transitions
-.mui-layout > .routes > .route {
-   > .mui-layout-view > .view-content {
+.mui-layout>.routes>.route {
+   >.mui-layout-view>.view-content {
       transform: translate3d(0, 0, 0);
       transition-property: none;
    }
 
-   &.animation-navigate.col-0.direction-forward.will-enter > .mui-layout-view {
-      > .view-content {
+   &.animation-navigate.col-0.direction-forward.will-enter>.mui-layout-view {
+      >.view-content {
          transform: translate3d(90px, 0, 0);
          opacity: 0.5;
          will-change: transform, opacity;
       }
 
-      > header > .view-title {
+      >header>.view-title {
          transform: translate3d(20px, 0, 0);
          will-change: transform, opacity;
          opacity: 0.5;
       }
    }
 
-   &.animation-navigate.col-0.direction-forward.entering > .mui-layout-view {
-      > .view-content {
+   &.animation-navigate.col-0.direction-forward.entering>.mui-layout-view {
+      >.view-content {
          transform: translate3d(0, 0, 0);
          opacity: 1;
          will-change: transform, opacity;
@@ -193,7 +196,7 @@ html > body {
          transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
       }
 
-      > header > .view-title {
+      >header>.view-title {
          transform: translate3d(0, 0, 0);
          opacity: 1;
          will-change: transform, opacity;
@@ -202,22 +205,22 @@ html > body {
       }
    }
 
-   &.animation-navigate.col-0.direction-backward.will-enter > .mui-layout-view {
-      > .view-content {
+   &.animation-navigate.col-0.direction-backward.will-enter>.mui-layout-view {
+      >.view-content {
          transform: translate3d(-90px, 0, 0);
          opacity: 0.5;
          will-change: transform, opacity;
       }
 
-      > header > .view-title {
+      >header>.view-title {
          transform: translate3d(-20px, 0, 0);
          opacity: 0.5;
          will-change: transform, opacity;
       }
    }
 
-   &.animation-navigate.col-0.direction-backward.entering > .mui-layout-view {
-      > .view-content {
+   &.animation-navigate.col-0.direction-backward.entering>.mui-layout-view {
+      >.view-content {
          transform: translate3d(0, 0, 0);
          opacity: 1;
          will-change: transform, opacity;
@@ -226,7 +229,7 @@ html > body {
          transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
       }
 
-      > header > .view-title {
+      >header>.view-title {
          transform: translate3d(0, 0, 0);
          opacity: 1;
          will-change: transform, opacity;
@@ -235,15 +238,15 @@ html > body {
       }
    }
 
-   &.animation-default.will-enter > .mui-layout-view > .view-content,
-   &.animation-navigate.col-0.direction-same.will-enter > .mui-layout-view > .view-content {
+   &.animation-default.will-enter>.mui-layout-view>.view-content,
+   &.animation-navigate.col-0.direction-same.will-enter>.mui-layout-view>.view-content {
       transform: translate3d(0, 7px, 0);
       opacity: 0;
       will-change: transform, opacity;
    }
 
-   &.animation-default.entering > .mui-layout-view > .view-content,
-   &.animation-navigate.col-0.direction-same.entering > .mui-layout-view > .view-content {
+   &.animation-default.entering>.mui-layout-view>.view-content,
+   &.animation-navigate.col-0.direction-same.entering>.mui-layout-view>.view-content {
       transform: translate3d(0, 0, 0);
       opacity: 1;
       will-change: transform, opacity;

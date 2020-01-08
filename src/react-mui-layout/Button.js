@@ -7,11 +7,12 @@ export default function NewButton(originalProps) {
    const props = { ...originalProps };
    delete props.href;
    delete props.to;
+   delete props.path;
 
    const onClick = e => {
       if (props.onClick) props.onClick(e);
-      if (history && history.push && (originalProps.to || originalProps.href)) {
-         history.push(originalProps.to || originalProps.href);
+      if (history && history.push && (originalProps.to || originalProps.href || originalProps.path)) {
+         history.push(originalProps.to || originalProps.href || originalProps.path);
       } 
    };
 

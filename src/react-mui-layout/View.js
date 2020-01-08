@@ -68,10 +68,10 @@ export function View(props) {
          (!props.col || props.actionsForce || typeof props.actions === typeof View) &&
          actionsProps
             .filter(action => {
-               const key = action.key || action.value || action.id || action.label || action.to || action.href;
+               const key = action.key || action.value || action.id || action.label || action.to || action.href || action.path;
                if (!key) return false;
                action.key = key;
-               return action && (action.label || action.icon) && (action.onClick || action.href || action.to);
+               return action && (action.label || action.icon) && (action.onClick || action.href || action.to || action.path);
             })
             .map(action => {
                const props = {
@@ -88,7 +88,7 @@ export function View(props) {
                   props.endIcon = action.endIcon;
                   props.children = action.label;
                }
-               if (action.to || action.href) props.to = action.to || action.href;
+               if (action.to || action.href || action.path) props.to = action.to || action.href || action.path;
 
                return <Button {...props} />;
             });
@@ -104,15 +104,15 @@ export function View(props) {
          (!props.col || props.actionsForce || typeof props.menu === typeof View) &&
          menuProps
             .filter(action => {
-               const key = action.key || action.value || action.id || action.label || action.to || action.href;
+               const key = action.key || action.value || action.id || action.label || action.to || action.href || action.path;
                if (!key) return false;
                action.key = key;
-               return action && action.label && (action.onClick || action.href || action.to);
+               return action && action.label && (action.onClick || action.href || action.to || action.path);
             })
             .map(action => {
                const onClick = e => {
                   if (action.onClick) action.onClick(e, action);
-                  if (action.to || action.href) props.history.push(action.to || action.href);
+                  if (action.to || action.href || action.path) props.history.push(action.to || action.href || action.path);
                   handleMenuClose();
                };
                return (

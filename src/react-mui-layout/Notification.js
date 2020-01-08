@@ -74,7 +74,7 @@ export const Notification = React.forwardRef(function Modal(props, ref) {
                props.endIcon = action.endIcon;
                props.children = action.label;
             }
-            if (action.to || action.href) props.to = action.to || action.href;
+            if (action.to || action.href || action.path) props.to = action.to || action.href || action.path;
 
             actions.push(<Button {...props} />);
          }
