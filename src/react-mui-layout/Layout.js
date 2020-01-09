@@ -17,7 +17,7 @@ import './Layout.scss';
 export const AppContext = React.createContext([]);
 function AppProvider(props) {
    const [project, setProject] = useState((props.config && props.config.project) || props.project || {});
-   const [darkMode, setDarkMode] = useState((props.config && props.config.darkMode) || props.darkMode);
+   const [darkMode, setDarkMode] = useState((props.config && props.config.darkMode) || props.darkMode || (props.theme && props.theme.palette && props.theme.palette.type === 'dark'));
    const [theme, setTheme] = useState((props.config && props.config.theme) || props.theme || {});
    const toggleDarkMode = () => {
       setDarkMode(!darkMode);
@@ -54,7 +54,7 @@ function LayoutContent(props) {
 
    const [containerEl, setContainerEl] = useState();
    const onContainerRef = useCallback(
-      el => {
+      (el) => {
          if (el && containerEl !== el) setContainerEl(el);
       },
       [containerEl]
@@ -134,8 +134,8 @@ function LayoutContent(props) {
                      <LayoutRounder />
                   </main>
                </div>
-               <Notification app={app} theme={theme} ref={notification => (app.notification = notification)} />
-               <Modal app={app} theme={theme} ref={modal => (app.modal = modal)} />
+               <Notification app={app} theme={theme} ref={(notification) => (app.notification = notification)} />
+               <Modal app={app} theme={theme} ref={(modal) => (app.modal = modal)} />
             </HistoryProvider>
          </SnackbarProvider>
       </ThemeProvider>
