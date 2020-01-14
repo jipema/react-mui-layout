@@ -19,12 +19,12 @@ export const Modal = React.forwardRef(function Modal(props, ref) {
    const [open, setOpen] = useState(false);
 
    const handleClose = useCallback(
-      (e, reason) => {
+      async (e, reason) => {
          if (!open) return;
          if (modal && modal.onClose) modal.onClose(e, reason, modal);
          if (modal && modal.promOk) modal.promOk(reason || true);
-         //setModal(null);
          setOpen(false);
+         return {e, reason, modal}
       },
       [modal, open]
    );
@@ -32,7 +32,7 @@ export const Modal = React.forwardRef(function Modal(props, ref) {
       (debounce = 150) => {
          if (openDebounce.current) openDebounce.current = clearTimeout(openDebounce.current);
          openDebounce.current = setTimeout(() => {
-            if (!queue || !queue.current || !queue.current.length || open) return;
+            if (!queue.current || !queue.current.length || open) return;
             const newModal = queue.current.shift();
             setModal(newModal);
             setOpen(true);
@@ -90,8 +90,11 @@ export const Modal = React.forwardRef(function Modal(props, ref) {
       [openNext]
    );
    const close = useCallback(
-      (id, e) => {
-         if (!queue || !queue.current || !queue.current.length) return;
+      async (id, e) => {
+         if ((!queue.current || !queue.current.length) && !modal) return console.log('[modal] close skipped: empty queue', queue, modal);
+
+         if(id && modal && modal.id===id) return handleClose(e, 'closeById');
+         if(!queue.current.length) return handleClose(e, 'closeMethod');
 
          //in queue
          if (id) {
@@ -106,11 +109,6 @@ export const Modal = React.forwardRef(function Modal(props, ref) {
                found = queue.current.splice(found, 1);
             }
             return found;
-         }
-
-         //current
-         if (modal) {
-            handleClose(e);
          }
       },
       [modal, handleClose]
