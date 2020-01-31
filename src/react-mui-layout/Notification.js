@@ -11,16 +11,27 @@ import './Notification.scss';
 
 export const Notification = React.forwardRef(function Modal(props, ref) {
    const theme = props.theme || {};
+   const list = React.useRef({});
 
    const upSm = useMediaQuery(theme.breakpoints.up('sm'));
    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-   const open = prms => {
+   const open = async prms => {
       if (!prms || !enqueueSnackbar) return;
-      const params = prms && prms.content ? { ...prms } : { content: prms };
+      const params = prms && (prms.content || prms.message || prms.title) ? { ...prms } : { content: prms };
       params.key = params.key || params.id || uuid();
+      if (params.message && !params.content) params.content = params.message;
+      if (params.title && !params.content) {
+         params.content = params.title;
+         delete params.title;
+      }
+      if (params.type === 'danger') params.type = 'error';
+      delete params.id;
+      if (list.current && list.current[params.key]) return list.current[params.key].prom;
+
       params.autoHideDuration = params.autoHideDuration || params.duration;
       if (params.autoHideDuration === undefined) params.autoHideDuration = 10000;
       if (params.autoHideDuration === 0) params.persist = true;
+      delete params.duration;
 
       let content = params.content;
       delete params.content;
@@ -64,7 +75,7 @@ export const Notification = React.forwardRef(function Modal(props, ref) {
                className: 'auto-action ' + (action.className || ''),
                onClick: onClick,
                color: action.color || (action.primary && 'primary') || (action.secondary && 'secondary') || 'inherit',
-               variant: action.variant || action.type || (action.primary && 'contained') || (action.secondary && 'contained')
+               variant: action.variant || action.type || (action.primary && 'contained') || (action.secondary && 'contained'),
             };
             if (action.icon && !action.label) {
                props.component = IconButton;
@@ -84,24 +95,40 @@ export const Notification = React.forwardRef(function Modal(props, ref) {
 
       //type
       params.variant = params.variant || params.type;
+      delete params.type;
 
       //promisify
-      let promOk;
-      const prom = new Promise(ok => {
-         promOk = ok;
-      });
+      const notif = { params };
+      notif.prom = new Promise(ok => notif.promOk = ok);
       params.onClose = (e, reason) => {
          if (reason === 'clickaway') return;
          if (prms.onClose) prms.onClose(e, reason);
-         return promOk(reason || true);
+         notif.closeReason = reason || true;
+         notif.closeEvent = e;
+      };
+      params.onEnter = (el) => {
+         notif.el = el;
+         if (list && list.current && params.key) list.current[params.key] = notif;
+         if (prms.onEnter) prms.onEnter(params);
+      }
+      params.onExited = (el, id) => {
+         if (list && list.current && params.key) delete list.current[params.key];
+         if (prms.onClosed) prms.onClosed(params);
+         notif.promOk(notif.closeReason, notif.closeEvent);
       };
 
       enqueueSnackbar(content, params);
-      return prom;
+      return notif.prom;
    };
 
+   //close
+   const close = async (id, reason) => {
+      closeSnackbar(id, reason);
+      return list.current && list.current[id] && list.current[id].prom;
+   }
+
    //expose methods
-   const exposable = { open, update: open, close: closeSnackbar };
+   const exposable = { open, update: open, close, list: list && list.current };
    if (typeof ref === typeof Modal) ref(exposable);
    else if (ref && ref.current) ref.current = exposable;
 

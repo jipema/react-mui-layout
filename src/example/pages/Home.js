@@ -12,6 +12,7 @@ import { View, Button } from '../../react-mui-layout';
 import './Home.scss';
 
 export default function Home(props) {
+   if(!window.app) window.app = props.app;
    const toggleDarkMode = e => {
       if (props.app && props.app.toggleDarkMode) props.app.toggleDarkMode();
    };
